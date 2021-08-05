@@ -8,16 +8,18 @@ import (
 func main() {
 	r := gin.Default()
 
-	// match all request
-	r.Any("/test", func(context *gin.Context) {
+	// services
+	r.GET("/api/services", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
-			"message": "test",
+			"data":   []string{"webapp", "gui"},
+			"total":  2,
+			"limit":  0,
+			"offset": 0,
+			"errors": nil,
 		})
 	})
 
-	/*// no route
-	r.NoRoute(func(context *gin.Context) {
-		context.HTML(http.StatusNotFound, "./views/404.html", nil)
-	})*/
-	r.Run()
+	//
+
+	r.Run(":3002")
 }
